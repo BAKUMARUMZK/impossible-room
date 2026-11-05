@@ -1,0 +1,354 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #050505;
+  color: #ddd;
+  font-family: "Yu Gothic", sans-serif;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#start-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(ellipse, #292522 0%, #090909 65%, #000 100%);
+  text-align: center;
+  padding: 20px;
+}
+
+#start-screen h1 {
+  font-size: clamp(28px, 6vw, 55px);
+  letter-spacing: 7px;
+  color: #b5aaa0;
+  text-shadow: 0 0 20px #777;
+}
+
+#start-screen p {
+  margin: 30px 0;
+  color: #777;
+  letter-spacing: 3px;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+#start-button,
+#ending button {
+  padding: 15px 45px;
+  background: #28231f;
+  color: #ddd;
+  border: 1px solid #75685b;
+  letter-spacing: 4px;
+  transition: .3s;
+}
+
+#start-button:hover,
+#ending button:hover {
+  background: #554237;
+}
+
+#game {
+  max-width: 1100px;
+  margin: auto;
+}
+
+header {
+  height: 55px;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  background: #111;
+  color: #999;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+#room {
+  height: min(65vh, 620px);
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #292522 0%,
+    #151311 65%,
+    #090909 100%
+  );
+}
+
+.wall {
+  position: absolute;
+  inset: 0 0 25%;
+  background:
+    linear-gradient(90deg,
+      transparent 49.5%,
+      #35302b 50%,
+      transparent 50.5%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 100px,
+      #332d28 101px,
+      transparent 103px
+    );
+  opacity: .6;
+}
+
+.floor {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 27%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #171412 0 95px,
+      #29231f 96px,
+      #171412 100px
+    );
+  transform: perspective(300px) rotateX(10deg);
+  transform-origin: bottom;
+}
+
+.room-title {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  color: #71675c;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.object {
+  position: absolute;
+  z-index: 2;
+  color: #ddd;
+  border: 1px solid #777;
+  background: #25201d;
+  box-shadow: 0 10px 30px #000;
+  transition: .2s;
+}
+
+.object:hover {
+  filter: brightness(1.5);
+  border-color: #c6a98a;
+}
+
+.object span {
+  display: block;
+  padding: 10px;
+  background: #0009;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.desk {
+  left: 10%;
+  bottom: 23%;
+  width: 25%;
+  height: 20%;
+  background: linear-gradient(#49382b, #201811);
+}
+
+.clock {
+  top: 18%;
+  left: 44%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #333 40%, #0b0b0b 70%);
+  border: 5px solid #766b5d;
+}
+
+.mirror {
+  right: 13%;
+  top: 15%;
+  width: 17%;
+  height: 35%;
+  background: linear-gradient(130deg, #87908c, #252e31, #5b6460);
+  border: 6px solid #493a30;
+}
+
+.door {
+  right: 8%;
+  bottom: 23%;
+  width: 18%;
+  height: 48%;
+  background: linear-gradient(90deg, #211711, #49372a, #211711);
+  border: 5px solid #17110d;
+}
+
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    #0009 100%
+  );
+  z-index: 3;
+}
+
+.bottom-panel {
+  padding: 20px;
+  background: #101010;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #a18d78;
+  font-size: 14px;
+}
+
+.inventory {
+  margin-top: 25px;
+  padding: 15px;
+  border: 1px solid #39322c;
+  background: #171513;
+}
+
+.inventory h3 {
+  font-size: 14px;
+  color: #a58b70;
+  margin-bottom: 12px;
+}
+
+#records {
+  font-size: 13px;
+  line-height: 2;
+  color: #aaa;
+}
+
+.instruction {
+  color: #777;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000d;
+  padding: 20px;
+}
+
+.modal-box {
+  width: min(450px, 100%);
+  padding: 35px;
+  background: #171513;
+  border: 1px solid #655346;
+  box-shadow: 0 0 60px #000;
+  position: relative;
+}
+
+.modal-box h2 {
+  color: #b49a7e;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.modal-box p {
+  line-height: 2;
+  color: #ccc;
+  white-space: pre-line;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: #aaa;
+  background: none;
+  border: none;
+  font-size: 27px;
+}
+
+#modal-extra {
+  margin-top: 20px;
+}
+
+#modal-extra input {
+  width: 100%;
+  padding: 12px;
+  background: #080808;
+  color: white;
+  border: 1px solid #75685b;
+  font-size: 22px;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+#modal-extra button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  color: white;
+  background: #49382b;
+  border: 1px solid #76604c;
+}
+
+#ending {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #000;
+  gap: 25px;
+}
+
+#ending h1 {
+  font-size: 45px;
+  letter-spacing: 7px;
+  color: #aaa;
+}
+
+#ending p {
+  color: #888;
+}
+
+@media(max-width: 600px) {
+  .clock {
+    width: 65px;
+    height: 65px;
+  }
+
+  .status {
+    flex-direction: column;
+  }
+
+  #room {
+    min-height: 430px;
+  }
+
+  .desk {
+    width: 35%;
+  }
+
+  .door {
+    width: 23%;
+  }
+}

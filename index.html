@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE IMPOSSIBLE ROOM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="start-screen">
+    <h1>THE IMPOSSIBLE ROOM</h1>
+    <p>ここから出る方法は、存在しない。</p>
+    <button id="start-button">ゲーム開始</button>
+  </div>
+
+  <main id="game" class="hidden">
+    <header>
+      <span>THE IMPOSSIBLE ROOM</span>
+      <span id="timer">00:00</span>
+    </header>
+
+    <section id="room">
+      <div class="wall"></div>
+      <div class="floor"></div>
+
+      <div class="room-title">UNKNOWN ROOM / 001</div>
+
+      <button class="object desk" data-object="desk">
+        <span>机</span>
+      </button>
+
+      <button class="object clock" data-object="clock">
+        <span>時計</span>
+      </button>
+
+      <button class="object mirror" data-object="mirror">
+        <span>鏡</span>
+      </button>
+
+      <button class="object door" data-object="door">
+        <span>EXIT</span>
+      </button>
+
+      <div class="dark-overlay"></div>
+    </section>
+
+    <section class="bottom-panel">
+      <div class="status">
+        <span>探索状況</span>
+        <span id="status">部屋を調べてください。</span>
+      </div>
+
+      <div class="inventory">
+        <h3>調査記録</h3>
+        <div id="records">まだ何も発見していない。</div>
+      </div>
+
+      <p class="instruction">
+        部屋の物をクリックして調べよう。
+      </p>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button id="close-modal" class="close">×</button>
+      <h2 id="modal-title">調査</h2>
+      <p id="modal-text"></p>
+      <div id="modal-extra"></div>
+    </div>
+  </div>
+
+  <div id="ending" class="hidden">
+    <h1>YOU ESCAPED?</h1>
+    <p>扉の向こうには、同じ部屋があった。</p>
+    <p>END 01 : THE LOOP</p>
+    <button onclick="location.reload()">もう一度プレイ</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
